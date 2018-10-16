@@ -24,7 +24,7 @@ const Game = () => (
         <Board />
       </BoardContainer>
       <ScoreContainer width={6}>
-        <Score />
+        <ScoreCard />
       </ScoreContainer>
     </Grid.Row>
   </Grid>
