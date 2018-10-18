@@ -1,19 +1,24 @@
 export const singles = (value, dice) => {
+  //[1,2,1,1,3]
+  // 1
   return addDice(dice.filter( d => d === value ))
 }
 
 export const addAllDice = (type, dice) => {
-  const totals = []
+  let totals = []
+
 
   switch(type) {
-    case 'Three Of a Kind':
+    case 'Three Of A Kind':
       totals = validateThreeOfAKind(dice) ? dice : []
+      break
     case 'Four Of A Kind':
       totals = validateFourOfAKind(dice) ? dice : []
+      break
     default:
       totals = dice
   }
-
+  
   return addDice(totals)
 }
 
@@ -26,20 +31,21 @@ export const staticScore = (type, dice) => {
     case 'High Straight':
       return validateHighStraight(dice) ? 40 : 0
     case 'Yahtzee':
-      return validateYahtzee(dice) ? 60 : 0
+      return validateYahtzee(dice) ? 50 : 0
     default:
       return 0
   }
-
 }
 
 const addDice = (dice) => {
-  return dice.reduce( (total, val) => {
+  return dice.reduce( (total, val) =>  { 
     return total + val
-  })
+  },0)
 }
 
 const validateFullHouse = (dice) => {
+  //[1,2,2,1,1]
+  //[[1,1,1], [2,2]]
   let hasTwo = false
   let hasThree = false
   const split = splitArray(dice)
@@ -74,18 +80,22 @@ const validateThreeOfAKind = (dice) => {
   let hasScore = false
   const split = splitArray(dice)
   for ( let arr of split.newArray ) {
-    if (arr.length >= 3)
+    if (arr.length >= 3 )
       hasScore = true
   }
+
+  return hasScore
 }
 
 const validateFourOfAKind = (dice) => {
   let hasScore = false
   const split = splitArray(dice)
   for ( let arr of split.newArray ) {
-    if (arr.length >= 4)
+    if (arr.length >= 4 )
       hasScore = true
   }
+
+  return hasScore
 }
 
 const splitArray = (dice) => {
@@ -105,6 +115,7 @@ const splitArray = (dice) => {
       previous: null,
       newArray: []
   })
+
   return split
 }
 
@@ -112,7 +123,7 @@ const findSeq = (dice) => {
   let uniq = [...new Set(dice)]
   let count = 1
   for (let i = 0; i < uniq.length; i++) {
-    if (uniq[i + 1] - 1 === dice[i]) {
+    if (uniq[i + 1] - 1 === uniq[i]) {
       ++count
     } else {
       break
