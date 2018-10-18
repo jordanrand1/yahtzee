@@ -2,7 +2,7 @@ import React from 'react'
 import { Header, Grid, Button, Divider } from 'semantic-ui-react'
 import Dice from './Dice'
 import { connect } from 'react-redux'
-import { rollDice, newGame } from '../reducers/currentGame'
+import { rollDice, newGame, postScore } from '../reducers/currentGame'
 
 const checkEndGame = (scores) => {
   let gameOver = true
@@ -11,6 +11,9 @@ const checkEndGame = (scores) => {
       if (score === null)
         gameOver = false
     })
+
+  if (gameOver)
+    dispatch(postScore(this.calcScores(scores)))
 
   return gameOver
 }
