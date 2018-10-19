@@ -4,7 +4,7 @@ import Dice from './Dice'
 import { connect } from 'react-redux'
 import { rollDice, newGame, postScore } from '../reducers/currentGame'
 
-const checkEndGame = (scores) => {
+const checkEndGame = (scores, dispatch) => {
   let gameOver = true
   scores.map( s => s.score ) 
     .forEach( score => {
@@ -12,8 +12,8 @@ const checkEndGame = (scores) => {
         gameOver = false
     })
 
-  if (gameOver)
-    dispatch(postScore(this.calcScores(scores)))
+  if (gameOver) 
+    dispatch( postScore(calcScores(scores)) )
 
   return gameOver
 }
@@ -32,7 +32,7 @@ const Board = ({
 }) => {
   const maxRoll = roll === 3
   const disabled = maxRoll ? { disabled: true } : {}
-  const gameOver = checkEndGame(scores)
+  const gameOver = checkEndGame(scores, dispatch)
   return (
     <Grid>
       <Grid.Row>
@@ -86,3 +86,4 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(Board)
+

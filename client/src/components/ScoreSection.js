@@ -1,20 +1,14 @@
 import React from 'react'
 import ScoreRow from './ScoreRow'
-import {
-  List,
-  Header,
-  Divider,
-  Segment,
-} from 'semantic-ui-react'
+import { List, Header, Segment } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 
 class ScoreSection extends React.Component {
-
   total = (score, title) => {
     return (
       <List.Item key={title}>
-        <Header floated='left'>{title}</Header>
-        <Header floated='right'>{score}</Header>
+        <Header floated="left">{title}</Header>
+        <Header floated="right">{score}</Header>
       </List.Item>
     )
   }
@@ -38,6 +32,7 @@ class ScoreSection extends React.Component {
     }
 
     return sectionScores
+
   }
 
   render() {
@@ -57,8 +52,9 @@ class ScoreSection extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const  mapStateToProps = (state) => {
   return { currentGame: state.currentGame }
 }
 
 export default connect(mapStateToProps)(ScoreSection)
+

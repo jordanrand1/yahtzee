@@ -4,5 +4,6 @@ json.array! @scores do |score|
   json.email user.email
   json.nickname user.nickname
   json.score score.value
-  json.create_at score.created_at
+  json.created_at score.created_at
 end
+

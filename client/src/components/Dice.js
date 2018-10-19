@@ -1,8 +1,5 @@
 import React from 'react'
-import { 
-  Image,
-  Grid, 
-} from 'semantic-ui-react'
+import { Image, Grid } from 'semantic-ui-react'
 import styled from 'styled-components'
 import d1 from '../images/d1.png'
 import d2 from '../images/d2.png'
@@ -16,7 +13,7 @@ import { connect } from 'react-redux'
 const DiceImg = styled(Image)`
   margin-left: 20px;
   cursor: pointer;
-  border-bottom: ${ props => props.selected ? 'solid 2px blue' : ''};
+  border-bottom: ${ props => props.selected ? 'solid 2px blue' : '' };
 `
 
 const images = {
@@ -34,9 +31,10 @@ const Dice = ({ value, index, kept, dispatch }) => (
       selected={kept}
       src={images[`d${value}`]}
       alt={`dice value ${value}`}
-      onClick={ () => dispatch(toggleKept(index)) }
+      onClick={() => dispatch(toggleKept(index))}
     />
   </Grid.Column>
 )
 
 export default connect()(Dice)
+

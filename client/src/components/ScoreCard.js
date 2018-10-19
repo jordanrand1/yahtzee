@@ -9,3 +9,4 @@ const ScoreCard = () => (
 )
 
 export default ScoreCard
+
